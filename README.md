@@ -61,6 +61,20 @@ Example:
 
     python src/onboarding/data_validation.py --newdata MMTT_FRTS_.xlsx  --keymap Data_Key-Map.xlsx --loglevel 1
 
+Sample Output:
+----
+
+```
+INFO:__main__:MMTT_FRTS_.xlsx read successfully
+INFO:__main__:Data_Key-Map.xlsx read successfully
+Current file name: MMTT_FRTS_.xlsx
+Example format: [study_name]-[data_type]-[suffix].csv
+Enter the new name for the file: 
+INFO:__main__:File name of MMTT_FRTS_.xlsx is not changed
+INFO:__main__:Subject renamed to Subject
+INFO:__main__:Sequence renamed to Sequence
+INFO:__main__:data/onboarded/MMTT_FRTS_.xlsx saved successfully
+```
 
 --------
 
