@@ -51,6 +51,12 @@ Project Organization
 
 How to run the onboarding tool:
 ------------
+
+Clone the git repo with the below command:
+    git clone https://github.com/candiceT233/FDSN-CS.git
+
+Go to the FDSN-CS project folder 
+
 Download the datasets from the drive and save it to the data/raw folder.
 
 Run the below python command to trigger the onboarding tool.
