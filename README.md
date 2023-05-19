@@ -54,10 +54,12 @@ How to run the onboarding tool:
 Download the datasets from the drive and save it to the data/raw folder.
 
 Run the below python command to trigger the onboarding tool.
- python src/onboarding/data_validation.py --newdata <data_set name>  --keymap Data_Key-Map.xlsx --loglevel 1
+
+    python src/onboarding/data_validation.py --newdata <data_set name>  --keymap Data_Key-Map.xlsx --loglevel 1
 
 Example:
-   python src/onboarding/data_validation.py --newdata MMTT_FRTS_.xlsx  --keymap Data_Key-Map.xlsx --loglevel 1
+
+    python src/onboarding/data_validation.py --newdata MMTT_FRTS_.xlsx  --keymap Data_Key-Map.xlsx --loglevel 1
 
 
 --------
