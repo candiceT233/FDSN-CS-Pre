@@ -10,10 +10,9 @@ Project Organization
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
+    │   ├── onboarded       <- onboarded datasets.
     │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
+    │   └── raw            <- The original datasets downloaded from drive.
     │
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
     │
@@ -35,10 +34,10 @@ Project Organization
     ├── src                <- Source code for use in this project.
         ├── __init__.py    <- Makes src a Python module
         │
-        ├── data           <- Scripts to download or generate data
-        │   └── make_dataset.py
+        ├── onboarding           <- Scripts to onboard the datasets and log the information about new dataset.
+        │   └── data_validation.py
         │
-        ├── features       <- Scripts to turn raw data into features for modeling
+        ├── preprocess       <- Scripts to turn raw data into features for modeling
         │   └── build_features.py
         │
         ├── models         <- Scripts to train models and then use trained models to make
@@ -49,6 +48,16 @@ Project Organization
         └── visualization  <- Scripts to create exploratory and results oriented visualizations
             └── visualize.py
      
+
+How to run the onboarding tool:
+------------
+Download the datasets from the drive and save it to the data/raw folder.
+
+Run the below python command to trigger the onboarding tool.
+ python src/onboarding/data_validation.py --newdata <data_set name>  --keymap Data_Key-Map.xlsx --loglevel 1
+
+Example:
+   python src/onboarding/data_validation.py --newdata MMTT_FRTS_.xlsx  --keymap Data_Key-Map.xlsx --loglevel 1
 
 
 --------
