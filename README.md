@@ -53,6 +53,7 @@ How to run the onboarding tool:
 ------------
 
 Clone the git repo with the below command:
+
     git clone https://github.com/candiceT233/FDSN-CS.git
 
 Go to the FDSN-CS project folder 
