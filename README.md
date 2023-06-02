@@ -7,30 +7,30 @@ Project Organization
 ------------
 
     ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
+    ├── Makefile           <- (Remove) Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
     │   ├── onboarded       <- onboarded datasets.
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original datasets downloaded from drive.
     │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+    ├── docs               <- (TODO) A default Sphinx project; see sphinx-doc.org for details
     │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
+    ├── models             <- (Remove) Trained and serialized models, model predictions, or model summaries
     │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
+    ├── notebooks          <- TODO: Jupyter notebooks. Naming convention is a number (for ordering),
     │                         the creator's initials, and a short `-` delimited description, e.g.
     │                         `1.0-jqp-initial-data-exploration`.
     │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
+    ├── references         <- (Remove) Data dictionaries, manuals, and all other explanatory materials.
     │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
+    ├── reports            <- (Remove) Generated analysis as HTML, PDF, LaTeX, etc.
     │   └── figures        <- Generated graphics and figures to be used in reporting
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
     │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
+    ├── setup.py           <- (Remove) makes project pip installable (pip install -e .) so src can be imported
     ├── src                <- Source code for use in this project.
         ├── __init__.py    <- Makes src a Python module
         │
@@ -40,12 +40,12 @@ Project Organization
         ├── preprocess       <- Scripts to turn raw data into features for modeling
         │   └── build_features.py
         │
-        ├── models         <- Scripts to train models and then use trained models to make
+        ├── models         <- TODO: Scripts to train models and then use trained models to make
         │   │                 predictions
         │   ├── predict_model.py
         │   └── train_model.py
         │
-        └── visualization  <- Scripts to create exploratory and results oriented visualizations
+        └── visualization  <- TODO: Scripts to create exploratory and results oriented visualizations
             └── visualize.py
      
 
