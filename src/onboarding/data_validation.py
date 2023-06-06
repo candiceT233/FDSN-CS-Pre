@@ -10,6 +10,13 @@ logging.basicConfig(level=logging.INFO)
 # save the logs to a file in the logging directory
 logger = logging.getLogger(__name__)
 
+def remove_extension(file_name):
+    base_name, extension = os.path.splitext(file_name)
+    if extension.lower() in ['.csv', '.xlsx']:
+        return base_name
+    else:
+        return file_name
+    
 # Function to match the simillar or nearlly simillar keys in the dataset and the dictionary and log them
 def validate_match_keys(dataframe, dataframe_name, data_key_map_list, option, Data_key_map):
     """
@@ -72,6 +79,7 @@ def main():
         data_filenewname = data_filename
         logger.info(f"File name of {data_filename} is not changed")
     else:
+        data_filenewname = remove_extension(data_filenewname)
         logger.info(f"New file name of {data_filename} is : {data_filenewname}")
 
     data_key_map_list = []
