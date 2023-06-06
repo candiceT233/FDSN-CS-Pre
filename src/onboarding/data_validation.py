@@ -53,8 +53,9 @@ def main():
     current_directory = os.getcwd()
     
     # Get the path to the file
-    data_path = os.path.join(current_directory, f'data/raw/{data_filename}')
-    Data_key_map = os.path.join(current_directory, f'src/onboarding/{keymap_filename}')
+    # data_path = os.path.join(current_directory, f'data/raw/{data_filename}')
+    data_path = os.path.join(current_directory, f'{data_filename}')
+    Data_key_map = os.path.join(current_directory, f'{keymap_filename}')
 
     # Read the data
     Data_finalized = pd.read_excel(data_path)
@@ -97,7 +98,7 @@ def main():
             logger.info(f"{Data_finalized.columns[i]} renamed to {replace_key}")
     
     # Save the file with the new name and the standardized column names in the onboarding folder
-    Data_finalized.to_excel(f"./data/onboarded/{data_filenewname}", index=False)
+    Data_finalized.to_csv(f"../../data/onboarded/{data_filenewname}", index=False)
     logger.info(f"data/onboarded/{data_filenewname} saved successfully")
 
     validate_match_keys(Data_finalized, "Data_finalized", data_key_map_list, loglevel, Data_key_map)
