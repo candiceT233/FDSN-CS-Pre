@@ -68,6 +68,10 @@ def main():
     
     # Get the path to the file
     # data_path = os.path.join(current_directory, f'data/raw/{data_filename}')
+    if "data/raw/" not in data_filename:
+        data_filename = f"data/raw/{data_filename}"
+    if "src/onboarding/" not in keymap_filename:
+        keymap_filename = f"src/onboarding/{keymap_filename}"
     data_path = os.path.join(current_directory, f'{data_filename}')
     Data_key_map = os.path.join(current_directory, f'{keymap_filename}')
 
