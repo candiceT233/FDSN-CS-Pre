@@ -4,6 +4,12 @@ import os
 import pandas as pd
 from ydata_profiling import ProfileReport
 from difflib import get_close_matches
+
+
+log_dir="./logs"
+default_log_name="data_validation.log"
+onboarded_dir="./data/onboarded"
+
 # setup the logging
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -40,7 +46,7 @@ def generateReport(dataframe, name):
 
 def main():
     # write the logs to a file
-    file_handler = logging.FileHandler('./logs/data_validation.log')
+    file_handler = logging.FileHandler(f'{log_dir}/{default_log_name}')
     
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     file_handler.setFormatter(formatter)
@@ -107,12 +113,19 @@ def main():
             logger.info(f"{Data_finalized.columns[i]} renamed to {replace_key}")
     
     # Save the file with the new name and the standardized column names in the onboarding folder
-    Data_finalized.to_csv(f"./data/onboarded/{data_filenewname}.csv", index=False)
-    logger.info(f"data/onboarded/{data_filenewname} saved successfully")
+    Data_finalized.to_csv(f"{onboarded_dir}/{data_filenewname}.csv", index=False)
+    logger.info(f"{onboarded_dir}/{data_filenewname} saved successfully")
 
     validate_match_keys(Data_finalized, "Data_finalized", data_key_map_list, loglevel, Data_key_map)
 
     #TODO: Add the code to validate the data types
+    
+    
+    # Close logger and rename log file
+    file_handler.close()
+    new_log_filename = f'data_validation-{data_filenewname}.log'
+    new_log_file_path = os.path.join(log_dir, new_log_filename)
+    os.rename(f"{log_dir}/{default_log_name}", new_log_file_path)
 
 if __name__ == "__main__":
     main()
