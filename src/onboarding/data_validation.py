@@ -41,6 +41,7 @@ def generateReport(dataframe, name):
 def main():
     # write the logs to a file
     file_handler = logging.FileHandler('./logs/data_validation.log')
+    
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
@@ -106,7 +107,7 @@ def main():
             logger.info(f"{Data_finalized.columns[i]} renamed to {replace_key}")
     
     # Save the file with the new name and the standardized column names in the onboarding folder
-    Data_finalized.to_csv(f"../../data/onboarded/{data_filenewname}", index=False)
+    Data_finalized.to_csv(f"./data/onboarded/{data_filenewname}.csv", index=False)
     logger.info(f"data/onboarded/{data_filenewname} saved successfully")
 
     validate_match_keys(Data_finalized, "Data_finalized", data_key_map_list, loglevel, Data_key_map)
