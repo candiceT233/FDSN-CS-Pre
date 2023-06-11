@@ -75,6 +75,40 @@ def main():
     data_path = os.path.join(current_directory, f'{data_filename}')
     Data_key_map = os.path.join(current_directory, f'{keymap_filename}')
 
+    # Read the multiple sheets if present in the excel file
+    worksheet_dict = {}
+    onboard_data = pd.ExcelFile(data_path)
+    onboard_data_sheets = onboard_data.sheet_names
+
+    # Excel Sheet selection and log those sheets which are not present in the data
+    if len(onboard_data_sheets) > 1:
+        for sheet in onboard_data_sheets:
+            worksheet_dict[sheet] = pd.read_excel(data_path, sheet_name=sheet).shape
+
+        result_dict = {}    
+        # Give the list of sheets in the onboard_data_sheets find the difference between the two sheets and update the worksheet_dict
+        for sheet1, value1 in worksheet_dict.items():
+            for sheet2, value2 in worksheet_dict.items():
+                if sheet1 != sheet2:
+                    if value1 != value2:
+                        result_dict[sheet1 + '-' + sheet2] = 'different'
+                    else:
+                        result_dict[sheet1 + '-' + sheet2] = 'same'
+
+        worksheet_dict.update(result_dict)
+
+        # Read the sheet name from the user
+        logger.info(f" Worksheet Dictionary: {worksheet_dict}")
+        print(f" Sheets present in the file {data_filename}:{onboard_data_sheets}")
+        sheet_name = input(f"Enter the sheet name which you want to select from the above list:")
+        # Read the data from the sheet which is not a duplicate
+        Data_finalized = pd.read_excel(data_path, sheet_name=sheet_name)
+        logger.info(f"{data_filename} read successfully with the sheet name {sheet_name}")
+    else:
+        # Read the data
+        Data_finalized = pd.read_excel(data_path)
+        logger.info(f"{data_filename} read successfully")
+
     # Read the data
     Data_finalized = pd.read_excel(data_path)
     logger.info(f"{data_filename} read successfully")
@@ -122,8 +156,27 @@ def main():
 
     validate_match_keys(Data_finalized, "Data_finalized", data_key_map_list, loglevel, Data_key_map)
 
-    #TODO: Add the code to validate the data types
-    
+    #Validate the data types
+    data_types_dict = dict(zip(Data_key_map['Column Name'], Data_key_map['Expected_Data_type']))
+    for i in range (len(Data_key_map)):
+        if type(Data_key_map['Alternate Name'][i]) == str:
+            if ',' in Data_key_map['Alternate Name'][i]:
+                for j in range(len(Data_key_map['Alternate Name'][i].split(','))):
+                    data_types_dict.update(dict(zip([f"{Data_key_map['Alternate Name'][i].split(',')[j]}"], [Data_key_map['Expected_Data_type'][i]])))
+            else:
+                data_types_dict.update(dict(zip([f"{Data_key_map['Alternate Name'][i]}"], [f"{Data_key_map['Expected_Data_type'][i]}"])))
+
+    logger.info(f"Dataset schema checks")
+    for col, dtype in data_types_dict.items():
+        try:
+            if Data_finalized[col].dtype != dtype:
+                logger.info(f"{col} has data type {Data_finalized[col].dtype} but should be {dtype}")
+        except KeyError:
+            pass
+
+    for col in Data_finalized.columns:
+        if col not in data_types_dict.keys():
+            logger.info(f"{col} is not present in the dataset")   
     
     # Close logger and rename log file
     file_handler.close()
